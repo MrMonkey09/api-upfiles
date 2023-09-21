@@ -6,7 +6,7 @@ app.use(cors());
 app.use(express.static("./uploads"));
 const options = {
   cors: {
-    origin: "http://192.168.0.19:9595",
+    origin: "http://192.168.0.15:9595",
   },
 };
 const server = require("http").Server(app);
@@ -23,11 +23,16 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 let video = {};
+const Nucleo = require("./nucleo");
+const nucleo = new Nucleo();
 
 // Ruta inicial
 app.get("", (req, res) => {
-  console.log("IP: " + req.ip + " | Codigo de Etado: " + res.statusCode);
-  res.send({ ipScreen: ipFormat(req.ip) });
+  console.log(
+    "IP: " + nucleo.ipFormat(req.ip) + " | Codigo de Etado: " + res.statusCode
+  );
+  nucleo.connectedMessage(nucleo.ipFormat(req.ip));
+  res.send({ ipScreen: nucleo.ipFormat(req.ip) });
 });
 
 // Ruta para cargar archivos
@@ -61,13 +66,3 @@ io.on("connection", function (socket) {
 server.listen(3001, () => {
   console.log("Servidor en funcionamiento en el puerto 3001");
 });
-
-const ipFormat = (ip) => {
-  if (ip === "::1") {
-    this.newIp = "localhost";
-    return this.newIp;
-  } else {
-    this.newIp = ip.replace("::ffff:", "");
-    return this.newIp;
-  }
-};
