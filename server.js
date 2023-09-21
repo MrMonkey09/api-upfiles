@@ -6,7 +6,7 @@ app.use(cors());
 app.use(express.static("./uploads"));
 const options = {
   cors: {
-    origin: "http://192.168.0.15:9595",
+    origin: "http://192.168.0.19:9595",
   },
 };
 const server = require("http").Server(app);
@@ -49,7 +49,7 @@ io.on("connection", function (socket) {
   socket.on("video", (res) => {
     const data = res;
     console.log(res);
-    socket.to("general").emit("video", { data: video });
+    socket.to("general").emit("video", res);
   });
   socket.on("screen", (res) => {
     const data = res;
