@@ -61,6 +61,16 @@ io.on("connection", function (socket) {
     console.log(res);
     socket.to("general").emit("screen", res);
   });
+  socket.on("group", (res) => {
+    const data = res;
+    console.log(res);
+    socket.to("general").emit("group", res);
+  });
+  socket.on("cont", (res) => {
+    const data = res;
+    console.log(res);
+    socket.to("general").emit("group", res);
+  });
 });
 
 server.listen(3001, () => {
