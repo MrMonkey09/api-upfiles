@@ -17,7 +17,7 @@ class _Core {
     }
   }
 
-  connectedMessage(req, res) {
+  connectedMessageHTTP(req, res) {
     const ip = this.ipFormat(req.ip);
     this.cnCounter++;
     let message = {
@@ -26,6 +26,12 @@ class _Core {
       "Codigo de Estado": res.statusCode,
     };
     console.info(message);
+    return message;
+  }
+
+  connectedMessageSOCKET(handshake, user) {
+    const message = `Nuevo dispositivo: ${handshake} conectado con el usuario id --> ${user}`;
+    console.log(message);
     return message;
   }
 }

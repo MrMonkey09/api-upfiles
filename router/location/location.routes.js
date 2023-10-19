@@ -15,7 +15,7 @@ class Location_ {
   // Rutas raiz
   root() {
     this.app.get("/location", (req, res) => {
-      res.send(this._core.connectedMessage(req, res));
+      res.send(this._core.connectedMessageHTTP(req, res));
     });
   }
 }

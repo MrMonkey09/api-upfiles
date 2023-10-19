@@ -15,7 +15,7 @@ class Department_ {
   // Rutas raiz
   root() {
     this.app.get("/department", (req, res) => {
-      res.send(this._core.connectedMessage(req, res));
+      res.send(this._core.connectedMessageHTTP(req, res));
     });
   }
 }

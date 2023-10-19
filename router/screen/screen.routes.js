@@ -15,7 +15,9 @@ class Screen_ {
   // Rutas raiz
   root() {
     this.app.get("/screen", (req, res) => {
-      res.send(this._core.connectedMessage(req, res));
+      const ip = this._core.connectedMessageHTTP(req, res).IP;
+      console.info(`Pantalla detectada: ${ip}`);
+      res.send({ ipScreen: ip });
     });
   }
 }

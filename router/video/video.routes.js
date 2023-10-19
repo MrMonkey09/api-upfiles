@@ -20,7 +20,7 @@ class Video_ {
   // Rutas raiz
   root() {
     this.app.get("/video", (req, res) => {
-      res.send(this._core.connectedMessage(req, res));
+      res.send(this._core.connectedMessageHTTP(req, res));
     });
   }
 
@@ -32,8 +32,8 @@ class Video_ {
       (req, res) => {
         // Manejar el archivo cargado aquí
         console.log("archivo: " + req.file);
-        video = req.file;
-        res.send({ data: video });
+        this.video = req.file;
+        res.send({ data: this.video });
       }
     );
   }

@@ -14,7 +14,7 @@ class General_ {
   // Ruta raiz
   root() {
     this.app.get("", (req, res) => {
-      res.send(this._core.connectedMessage(req, res));
+      res.send(this._core.connectedMessageHTTP(req, res));
     });
   }
 }
