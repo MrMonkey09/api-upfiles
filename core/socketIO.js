@@ -55,31 +55,36 @@ class _SocketIO {
 
   socketInfo(socket) {
     console.log({
-      _events: socket._events,
-      _eventsCount: socket._eventsCount,
-      _maxListeners: socket._maxListeners,
-      nsp: socket.nsp,
-      client: socket.client,
-      recovered: socket.recovered,
-      data: socket.data,
-      connected: socket.connected,
-      acks: socket.acks,
-      fns: socket.fns,
-      flags: socket.flags,
-      server: socket.server,
-      adapter: socket.adapter,
-      id: socket.id,
-      handshake: socket.handshake,
+      //_events: socket._events,
+      //_eventsCount: socket._eventsCount,
+      //_maxListeners: socket._maxListeners,
+      //nsp: socket.nsp
+      //client: socket.client,
+      //recovered: socket.recovered,
+      //data: socket.data,
+      socketConnected: socket.connected,
+      //acks: socket.acks,
+      //fns: socket.fns,
+      //flags: socket.flags,
+      //server: socket.server,
+      //adapter: socket.adapter,
+      //id: socket.id,
+      //handshake: socket.handshake,
     });
   }
 
   socketConnection(_core, socketIO, socketInfo, socketRouter, socketRoutes) {
     socketIO.on("connection", function (socket) {
-      const handshake = socket.id;
-      /* socketInfo(socket); */
-      let { user } = socket.handshake.query;
-      socket.join("general");
-      _core.connectedMessageSOCKET(handshake, user);
+      const namespace = socket.nsp;
+      const client = socket.client;
+      const handshake = socket.handshake;
+      const server = socket.server;
+      const session = socket.id;
+      const query = socket.query;
+      //socketInfo(socket);
+      const room = "general";
+      socket.join(room);
+      _core.connectedMessageSOCKET(client, session);
       socketRouter(socket, socketRoutes);
     });
   }

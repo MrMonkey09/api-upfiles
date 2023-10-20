@@ -1,26 +1,39 @@
 // Creacion de la app express
 const express = require("express");
-const cors = require("cors");
 const app = express();
-app.use(cors());
-app.use(express.static("./uploads"));
 
 // Instanciar Core
 const _Core = require("./core/core");
 const _core = new _Core();
 
+// Instanciar Core
+const _DB = require("./core/db");
+const _db = new _DB();
+
+// Middlewares
+const cors = require("cors");
+app.use(express.json());
+app.use(cors());
+
+app.use(express.static("./uploads"));
+
+const mw_Server = require("./core/Middleware/server.mw");
+const mw_server = new mw_Server(_core);
+app.use((req, res, next) => mw_server.Request(req, res, next));
+
 // Creacion del enrutador
 const Router_ = require("./router/router");
-const router_ = new Router_(app, _core);
+const router_ = new Router_(app, _core, _db);
 
 // Creacion del servidor web
 const server = require("http").Server(app);
 const PORT = 3001;
+const HOSTNAME = "192.168.0.15";
 
 // Creacion del web socket
 const options = {
   cors: {
-    origin: "http://192.168.0.15:9595",
+    origin: "*",
   },
 };
 const _SocketIO = require("./core/socketIO");
@@ -33,6 +46,8 @@ router_.matchRoute();
 _socketIO.listenSocket();
 
 // Invocacion del servidor web
-server.listen(PORT, () => {
-  console.log(`Servidor en funcionamiento en el puerto ${PORT}`);
+server.listen(PORT, HOSTNAME, () => {
+  console.log(
+    `Servidor en funcionamiento en ip ${HOSTNAME} y en el puerto ${PORT}`
+  );
 });

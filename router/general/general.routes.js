@@ -13,8 +13,8 @@ class General_ {
 
   // Ruta raiz
   root() {
-    this.app.get("", (req, res) => {
-      res.send(this._core.connectedMessageHTTP(req, res));
+    this.app.get("", (req, res, next) => {
+      res.send({ "Ruta solicitada": req.url });
     });
   }
 }

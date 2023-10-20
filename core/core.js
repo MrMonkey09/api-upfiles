@@ -1,5 +1,6 @@
 class _Core {
-  cnCounter = 0;
+  cnCounterHTTP = 0;
+  cnCounterSocket = 0;
   newIp = "";
 
   constructor() {
@@ -19,19 +20,28 @@ class _Core {
 
   connectedMessageHTTP(req, res) {
     const ip = this.ipFormat(req.ip);
-    this.cnCounter++;
+    this.cnCounterHTTP++;
     let message = {
-      "Peticion N°": this.cnCounter,
+      Tipo: "HTTP",
+      Numero: this.cnCounterHTTP,
       IP: ip,
       "Codigo de Estado": res.statusCode,
+      "Ruta solicitada": req.url,
     };
-    console.info(message);
+    console.info("Peticion: ", message);
     return message;
   }
 
-  connectedMessageSOCKET(handshake, user) {
-    const message = `Nuevo dispositivo: ${handshake} conectado con el usuario id --> ${user}`;
-    console.log(message);
+  connectedMessageSOCKET(client, session) {
+    this.cnCounterSocket++;
+    let message = {
+      Tipo: "WebSocket",
+      Numero: this.cnCounterSocket,
+      IP: client.conn.remoteAddress,
+      ConexionID: session,
+      Dispositivo: client.id,
+    };
+    console.info("Peticion: ", message);
     return message;
   }
 }

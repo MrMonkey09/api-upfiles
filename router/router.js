@@ -9,6 +9,7 @@ const Video_ = require("./video/video.routes");
 class Router_ {
   app;
   _core;
+  _db;
 
   // Enrutadores
   department_;
@@ -19,16 +20,17 @@ class Router_ {
   user_;
   video_;
 
-  constructor(app, core) {
+  constructor(app, core, db) {
     this.app = app;
     this._core = core;
-    this.department_ = new Department_(this.app, this._core);
-    this.general_ = new General_(this.app, this._core);
-    this.groupScreen_ = new GroupScreen_(this.app, this._core);
-    this.location_ = new Location_(this.app, this._core);
-    this.screen_ = new Screen_(this.app, this._core);
-    this.user_ = new User_(this.app, this._core);
-    this.video_ = new Video_(this.app, this._core);
+    this._db = db;
+    this.department_ = new Department_(this.app, this._core, this._db);
+    this.general_ = new General_(this.app, this._core, this._db);
+    this.groupScreen_ = new GroupScreen_(this.app, this._core, this._db);
+    this.location_ = new Location_(this.app, this._core, this._db);
+    this.screen_ = new Screen_(this.app, this._core, this._db);
+    this.user_ = new User_(this.app, this._core, this._db);
+    this.video_ = new Video_(this.app, this._core, this._db);
   }
 
   matchRoute() {
