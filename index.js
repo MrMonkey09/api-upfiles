@@ -9,6 +9,8 @@ const _core = new _Core();
 // Instanciar Core
 const _DB = require("./core/db");
 const _db = new _DB();
+const _Models = require("./core/models");
+const _models = new _Models(_db);
 
 // Middlewares
 const cors = require("cors");

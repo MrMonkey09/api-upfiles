@@ -26,6 +26,16 @@ class Department_ {
     });
   }
 
+  // "/department/all"
+  allDepartment() {
+    this.app.get("/department/all", (req, res) => {
+      const table = "department";
+      const columns = "*";
+      const criterion = "";
+      this._db.getData(res, table, columns, criterion);
+    });
+  }
+
   // "/department/create"
   createDepartment() {
     this.app.put("/department/create", (req, res) => {
@@ -37,18 +47,6 @@ class Department_ {
 
   // "/department/{id}"
   getDepartment() {}
-
-  // "/department/all"
-  allDepartment() {
-    this.app.get("/department/all", (req, res) => {
-      if (this.departmentList) {
-        res.send({ departments: this.departmentList });
-      } else {
-        this.departmentList = departments;
-        res.send({ departments: this.departmentList });
-      }
-    });
-  }
 
   // "/department/{id}/update"
   updateDepartment() {}
