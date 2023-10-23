@@ -5,17 +5,17 @@ class _Models {
     this._db = db;
     console.log("Generando Modelo de datos...");
     this.createDB();
-    this.createTables();
-    this.insertNecesaryData();
   }
 
-  createDB() {
+  async createDB() {
     console.log("asd");
-    const dbList = ["screen_management"];
-    for (let db in dbList) {
-      console.log(db);
-      /* this._db.createDB("", db); */
-    }
+    const dbList = await this._db.getDBList();
+    console.log({dbList})
+    /* if (dbList && dbList.length !== 0) {
+      for (let db of dbList) {
+        console.log(db);
+      }
+    } */
   }
 
   createTables() {

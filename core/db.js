@@ -14,45 +14,53 @@ class _DB {
   }
 
   // Utilidades
-  responseMessage(response, error, results) {
-    if (error) {
-      console.error({ error });
-      response !== null ? response.send({ error }) : null;
-    } else if (results) {
-      console.log({ results });
-      response !== null ? response.send({ results }) : null;
-    }
+  async responseMessage(result) {
+    console.log({ result });
+    return result;
   }
 
   // Manejo de Bases de Datos
-  createDB(response, db) {
-    console.log(db);
-    this.connection.query(`CREATE DATABASE ${db};`, (error, results) => {
-      this.responseMessage(response, error, results);
-    });
+  async createDB(db) {
+    console.log({ db });
+    let dbList = [];
+    dbList = await this.getDBList();
+    console.log({ dbList });
+    /* if (dbList && dbList.length !== 0) {
+      dbList.push(result);
+    } else {
+      dbList = [result];
+    }
+    return dbList; */
   }
 
-  getDBList(response) {
+  async getDBList() {
     console.log("databases");
+    let resultConnection;
     this.connection.query(`SHOW DATABASES;`, (error, results) => {
-      this.responseMessage(response, error, results);
+      if (error) {
+        const err = this.responseMessage(error);
+        resultConnection = err;
+      } else {
+        const result = this.responseMessage(results);
+        resultConnection = result;
+      }
     });
   }
 
-  dropDB(response, db) {
+  async dropDB(response, db) {
     this.connection.query(`DROP DATABASE ${db};`, (error, results) => {
       this.responseMessage(response, error, results);
     });
   }
 
-  useDB(response, db) {
+  async useDB(response, db) {
     this.connection.query(`USE ${db}`, (error, results) => {
       this.responseMessage(response, error, results);
     });
   }
 
   // Manejo de Tablas
-  createTable(response, table, columns) {
+  async createTable(response, table, columns) {
     this.connection.query(
       `CREATE TABLE ${table}(${columns});`,
       (error, results) => {
@@ -61,20 +69,20 @@ class _DB {
     );
   }
 
-  getTableList(response) {
+  async getTableList(response) {
     this.connection.query(`SHOW TABLES;`, (error, results) => {
       this.responseMessage(response, error, results);
     });
   }
 
-  dropTable(response, table) {
+  async dropTable(response, table) {
     this.connection.query(`DROP TABLE ${table};`, (error, results) => {
       this.responseMessage(response, error, results);
     });
   }
 
   // Manejo de Datos
-  insertData(response, table, columns, data) {
+  async insertData(response, table, columns, data) {
     console.log({ table, columns, data });
     this.connection.query(
       `INSERT INTO ${table} (${columns}) VALUES (${data});`,
@@ -84,7 +92,7 @@ class _DB {
     );
   }
 
-  getData(response, table, columns, criterion) {
+  async getData(response, table, columns, criterion) {
     console.log({ table, columns, criterion });
     this.connection.query(
       `SELECT ${columns} FROM ${table} ${criterion};`,
@@ -94,7 +102,7 @@ class _DB {
     );
   }
 
-  updateData(response, table, columnsData, criterion) {
+  async updateData(response, table, columnsData, criterion) {
     console.log({ table, columnsData, criterion });
     this.connection.query(
       `UPDATE ${table} SET ${columnsData} ${criterion};`,
@@ -104,7 +112,7 @@ class _DB {
     );
   }
 
-  dropData(response, table, criterion) {
+  async dropData(response, table, criterion) {
     console.log({ table, criterion });
     this.connection.query(
       `DELETE FROM ${table} ${criterion};`,
