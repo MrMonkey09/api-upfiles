@@ -29,7 +29,7 @@ class Department_ {
   // "/department/all"
   allDepartment() {
     this.app.get("/department/all", (req, res) => {
-      const table = "department";
+      const table = "departments";
       const columns = "*";
       const criterion = "";
       this._db.getData(res, table, columns, criterion);

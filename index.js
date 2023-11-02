@@ -5,8 +5,6 @@ const app = express();
 // Instanciar Core
 const _Core = require("./core/core");
 const _core = new _Core();
-
-// Instanciar Core
 const _DB = require("./core/db");
 const _db = new _DB();
 const _Models = require("./core/models");
@@ -29,8 +27,8 @@ const router_ = new Router_(app, _core, _db);
 
 // Creacion del servidor web
 const server = require("http").Server(app);
-const PORT = 3001;
-const HOSTNAME = "192.168.0.15";
+const PORT = 3000;
+const HOSTNAME = "192.168.0.23";
 
 // Creacion del web socket
 const options = {
