@@ -4,10 +4,15 @@ CREATE TABLE Departments (
     Name varchar(255) NOT NULL,
     PRIMARY KEY (ID)
 );
-SELECT Name
-FROM departments
+SELECT *
+FROM departments;
 WHERE Name = "Soporte Tecnico Tecnológico";
 /*  */
+USE screen_management;
+UPDATE departments
+SET Name = "Técnico Soporte Tecnológico"
+WHERE ID = 1;
+    /*  */
 INSERT INTO departments(name)
 VALUES ("Soporte Tecnico Tecnológico");
 INSERT INTO users(name)
@@ -22,7 +27,7 @@ INSERT INTO departments(name)
 VALUES ("TIC");
 /*  */
 CREATE DATABASE screen_management;
-DROP DATABASE departments;
+DROP DATABASE screen_management;
 DROP TABLE screens;
 DROP TABLE users;
 DROP TABLE groups_screen;

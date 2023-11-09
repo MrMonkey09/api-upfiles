@@ -1,10 +1,10 @@
+import { connectedMessageSOCKET } from "./core.js";
+
 class _SocketIO {
   socketIO;
-  _core;
 
-  constructor(io, core) {
+  constructor(io) {
     this.socketIO = io;
-    this._core = core;
   }
 
   videoTopic(socket) {
@@ -59,10 +59,10 @@ class _SocketIO {
       //_eventsCount: socket._eventsCount,
       //_maxListeners: socket._maxListeners,
       //nsp: socket.nsp
-      //client: socket.client,
+      client: socket.client,
       //recovered: socket.recovered,
       //data: socket.data,
-      socketConnected: socket.connected,
+      //socketConnected: socket.connected,
       //acks: socket.acks,
       //fns: socket.fns,
       //flags: socket.flags,
@@ -73,7 +73,7 @@ class _SocketIO {
     });
   }
 
-  socketConnection(_core, socketIO, socketInfo, socketRouter, socketRoutes) {
+  socketConnection(socketIO, socketInfo, socketRouter, socketRoutes) {
     socketIO.on("connection", function (socket) {
       const namespace = socket.nsp;
       const client = socket.client;
@@ -82,9 +82,9 @@ class _SocketIO {
       const session = socket.id;
       const query = socket.query;
       //socketInfo(socket);
+      connectedMessageSOCKET(client, session)
       const room = "general";
       socket.join(room);
-      _core.connectedMessageSOCKET(client, session);
       socketRouter(socket, socketRoutes);
     });
   }
@@ -96,7 +96,6 @@ class _SocketIO {
     const socketRoutes = this.socketRoutes;
     const socketConnection = this.socketConnection;
     socketConnection(
-      this._core,
       this.socketIO,
       socketInfo,
       socketRouter,
@@ -105,4 +104,4 @@ class _SocketIO {
   }
 }
 
-module.exports = _SocketIO;
+export default _SocketIO

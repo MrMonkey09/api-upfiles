@@ -1,4 +1,4 @@
-const multer = require("multer");
+import multer from "multer";
 
 class _Multer {
   constructor() {
@@ -18,4 +18,4 @@ class _Multer {
   upload = multer({ storage: this.storage });
 }
 
-module.exports = _Multer;
+export default _Multer;
