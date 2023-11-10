@@ -17,15 +17,17 @@ export const createLocation = async (req, res) => {
 }
 
 export const findLocation = async (req, res) => {
-  const table = req.body.table;
-  const columns = req.body.columns;
-  const criterion = req.body.criterion;
+  const table = "locations";
+  const columns = req.body.columns ? req.body.columns : "*";
+  const criterion = req.body.criterion
+    ? req.body.criterion
+    : `WHERE ID = ${req.params.id}`;
   const result = await getData(table, columns, criterion);
   res.json(result)
 }
 
 export const updateLocation = async (req, res) => {
-  const table = req.body.table;
+  const table = "locations";
   const columnsData = req.body.columnsData;
   const criterion = req.body.data;
   const result = await updateData(table, columnsData, criterion);
@@ -33,8 +35,10 @@ export const updateLocation = async (req, res) => {
 }
 
 export const deleteLocation = async (req, res) => {
-  const table = req.body.table;
-  const criterion = req.body.criterion;
+  const table = "locations";
+  const criterion = req.body.criterion
+    ? req.body.criterion
+    : `WHERE ID = ${req.params.id}`;
   const result = await insertData(table, criterion);
   res.json(result)
 }

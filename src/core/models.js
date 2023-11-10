@@ -27,7 +27,7 @@ const tableList = [
       "ID int NOT NULL AUTO_INCREMENT, IP int NULL UNIQUE, Brand varchar(255) NOT NULL,CurrentGroupID int NULL, LocationID int NOT NULL, DepartmentID int NOT NULL, PRIMARY KEY (ID), CONSTRAINT FK_ScreenLocation FOREIGN KEY (LocationID) REFERENCES locations(ID), CONSTRAINT FK_ScreenGroupScreen FOREIGN KEY (CurrentGroupID) REFERENCES groups_screen(ID), CONSTRAINT FK_ScreenDepartment FOREIGN KEY (DepartmentID) REFERENCES departments(ID)",
   },
   {
-    name: "screens_groups",
+    name: "screens_groups_list",
     columns:
       "ID int NOT NULL AUTO_INCREMENT, ScreenID int NOT NULL, GroupScreenID int NOT NULL, PRIMARY KEY (ID), CONSTRAINT FK_ScreenGroupList FOREIGN KEY (ScreenID) REFERENCES screens(ID), CONSTRAINT FK_GroupScreenList FOREIGN KEY (GroupScreenID) REFERENCES groups_screen(ID)",
   },

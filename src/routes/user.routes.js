@@ -6,15 +6,15 @@ import { getAll, createUser, findUser, updateUser, deleteUser } from "../control
 router.get("/user/all", getAll);
 
 // Crear "/user/create"
-router.put("/user", createUser);
+router.post("/user", createUser);
 
-// Encontrar "/user/{id}"
-router.get("/user/{id}", findUser);
+// Encontrar "/user/:id"
+router.get("/user/:id", findUser);
 
-// Modificar "/user/{id}"
-router.patch("/user/{id}", updateUser);
+// Modificar "/user/:id"
+router.patch("/user/:id", updateUser);
 
-// Eliminar "/user/{id}"
-router.delete("/user/{id}", deleteUser);
+// Eliminar "/user/:id"
+router.delete("/user/:id", deleteUser);
 
 export default router;

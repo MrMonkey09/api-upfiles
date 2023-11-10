@@ -5,16 +5,16 @@ import { getAll, createDepartment, findDepartment, updateDepartment, deleteDepar
 // Mostrar todos "/department/all"
 router.get("/department/all", getAll);
 
-// Encontrar "/department/{id}"
-router.get("/department/{id}", findDepartment);
+// Encontrar "/department/:id"
+router.get("/department/:id", findDepartment);
 
 // Crear "/department/create"
-router.put("/department", createDepartment);
+router.post("/department", createDepartment);
 
-// Modificar "/department/{id}"
-router.patch("/department/{id}", updateDepartment);
+// Modificar "/department/:id"
+router.patch("/department/:id", updateDepartment);
 
-// Eliminar "/department/{id}"
-router.delete("/department/{id}", deleteDepartment);
+// Eliminar "/department/:id"
+router.delete("/department/:id", deleteDepartment);
 
 export default router;

@@ -1,6 +1,6 @@
 // Generar tablas y datos necesarios
 import Models from "./core/models.js";
-await Models()
+await Models();
 
 // Creacion de la app express
 import express from "express";
@@ -9,7 +9,7 @@ const app = express();
 import cors from "cors";
 app.use(express.json());
 app.use(cors());
-app.use(express.static("./uploads"));
+app.use(express.static("src/uploads"));
 
 // Middlewares
 import mw_Server from "./core/Middleware/server.mw.js";
@@ -29,25 +29,27 @@ const options = {
   },
 };
 import _SocketIO from "./core/socketIO.js";
-import {Server} from "socket.io";
+import { Server } from "socket.io";
 const _socketIO = new _SocketIO(new Server(http, options));
 
 // Invocacion del WebSocket
 _socketIO.listenSocket();
 
 // Rutas
-import GeneralRoutes from "./routes/general.routes.js"
-app.use(GeneralRoutes)
-import DepartmentRoutes from "./routes/department.routes.js"
-app.use(DepartmentRoutes)
-import GroupScreenRoutes from "./routes/group-screen.routes.js"
-app.use(GroupScreenRoutes)
-import LocationRoutes from "./routes/location.routes.js"
-app.use(LocationRoutes)
-import ScreenRoutes from "./routes/screen.routes.js"
-app.use(ScreenRoutes)
-import UserRoutes from "./routes/user.routes.js"
-app.use(UserRoutes)
+import GeneralRoutes from "./routes/general.routes.js";
+app.use(GeneralRoutes);
+import DepartmentRoutes from "./routes/department.routes.js";
+app.use(DepartmentRoutes);
+import GroupScreenRoutes from "./routes/group-screen.routes.js";
+app.use(GroupScreenRoutes);
+import LocationRoutes from "./routes/location.routes.js";
+app.use(LocationRoutes);
+import ScreenRoutes from "./routes/screen.routes.js";
+app.use(ScreenRoutes);
+import UserRoutes from "./routes/user.routes.js";
+app.use(UserRoutes);
+import VideosRoutes from "./routes/video.routes.js";
+app.use(VideosRoutes);
 
 // Invocacion del servidor web
 http.listen(PORT, HOSTNAME, () => {

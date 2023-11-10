@@ -6,15 +6,15 @@ import { getAll, createGroupScreen, findGroupScreen, updateGroupScreen, deleteGr
 router.get("/group-screen/all", getAll);
 
 // Crear "/group-screen/create"
-router.put("/group-screen", createGroupScreen);
+router.post("/group-screen", createGroupScreen);
 
-// Encontrar "/group-screen/{id}"
-router.get("/group-screen/{id}", findGroupScreen);
+// Encontrar "/group-screen/:id"
+router.get("/group-screen/:id", findGroupScreen);
 
-// Modificar "/group-screen/{id}"
-router.patch("/group-screen/{id}", updateGroupScreen);
+// Modificar "/group-screen/:id"
+router.patch("/group-screen/:id", updateGroupScreen);
 
-// Eliminar "/group-screen/{id}"
-router.delete("/group-screen/{id}", deleteGroupScreen);
+// Eliminar "/group-screen/:id"
+router.delete("/group-screen/:id", deleteGroupScreen);
 
 export default router;

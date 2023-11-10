@@ -8,9 +8,11 @@ class _Multer {
   // Configurar multer para el almacenamiento de archivos
   storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, "uploads/"); // Define la carpeta donde se guardarán los archivos
+      console.log({ file });
+      cb(null, "src/uploads"); // Define la carpeta donde se guardarán los archivos
     },
     filename: (req, file, cb) => {
+      console.log({ req, file });
       cb(null, Date.now() + "-" + "promo-china.mp4"); // Define el nombre del archivo
     },
   });

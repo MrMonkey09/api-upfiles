@@ -20,6 +20,7 @@ export const connectedMessageHTTP = (req, res) => {
   constants.cnCounterHTTP++;
   let message = {
     Tipo: "HTTP",
+    Metodo: req.method,
     Numero: constants.cnCounterHTTP,
     IP: ip,
     "Codigo de Estado": res.statusCode,
