@@ -10,6 +10,7 @@ import {
   screenToList,
   screenOutList,
   dropScreenList,
+  getScreenGroupList,
 } from "../controllers/screen.controller.js";
 
 // Mostrar todos "/screen/all"
@@ -38,5 +39,8 @@ router.delete("/screen/:id/out-list", screenOutList);
 
 // Quitar lista de grupo "/screen/:id/to-list"
 router.delete("/screen/:id/delete-list", dropScreenList);
+
+// Obtener grupo de pantallas de un grupo
+router.get("/screen/:id/group-screen-list", getScreenGroupList);
 
 export default router;

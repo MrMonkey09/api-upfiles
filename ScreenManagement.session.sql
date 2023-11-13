@@ -4,26 +4,27 @@ CREATE TABLE Departments (
     Name varchar(255) NOT NULL,
     PRIMARY KEY (ID)
 );
+USE screen_management;
 SELECT *
-FROM departments;
+FROM groups_screen;
 WHERE Name = "Soporte Tecnico Tecnológico";
 /*  */
 USE screen_management;
 UPDATE departments
 SET Name = "Técnico Soporte Tecnológico"
 WHERE ID = 1;
-    /*  */
-INSERT INTO departments(name)
+/*  */
+INSERT INTO departments(Name)
 VALUES ("Soporte Tecnico Tecnológico");
-INSERT INTO users(name)
+INSERT INTO users(Name)
 VALUES ("TIC");
-INSERT INTO departments(name)
-VALUES ("TIC");
-INSERT INTO departments(name)
-VALUES ("TIC");
-INSERT INTO departments(name)
-VALUES ("TIC");
-INSERT INTO departments(name)
+INSERT INTO departments(Name)
+VALUES ("Marketing");
+INSERT INTO departments(Name)
+VALUES ("Personas");
+INSERT INTO departments(Name)
+VALUES ("Seguridad");
+INSERT INTO departments(Name)
 VALUES ("TIC");
 /*  */
 CREATE DATABASE screen_management;

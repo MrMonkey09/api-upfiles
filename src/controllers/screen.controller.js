@@ -15,7 +15,7 @@ export const screenIP = async (req, res) => {
 };
 
 export const createScreen = async (req, res) => {
-  const table = req.body.table;
+  const table = "screens";
   const columns = req.body.columns;
   const data = req.body.data;
   const result = await insertData(table, columns, data);
@@ -35,7 +35,7 @@ export const findScreen = async (req, res) => {
 export const updateScreen = async (req, res) => {
   const table = "screens";
   const columnsData = req.body.columnsData;
-  const criterion = req.body.data;
+  const criterion = req.body.criterion;
   const result = await updateData(table, columnsData, criterion);
   res.json(result);
 };
@@ -72,5 +72,15 @@ export const dropScreenList = async (req, res) => {
     ? req.body.criterion
     : `WHERE GroupScreenID = ${req.params.id}`;
   const result = await dropData(table, criterion);
+  res.json(result);
+};
+
+export const getScreenGroupList = async (req, res) => {
+  const table = "screens_groups_list";
+  const columns = "ScreenID";
+  const criterion = req.body.criterion
+    ? req.body.criterion
+    : `WHERE GroupScreenID = ${req.params.id}`;
+  const result = await getData(table, columns, criterion);
   res.json(result);
 };
