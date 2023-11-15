@@ -18,7 +18,7 @@ class _SocketIO {
   screenTopic(socket) {
     socket.on("screen", (res) => {
       const data = res;
-      console.log(res);
+      console.log({res});
       socket.to("general").emit("screen", res);
     });
   }
@@ -58,18 +58,18 @@ class _SocketIO {
       //_events: socket._events,
       //_eventsCount: socket._eventsCount,
       //_maxListeners: socket._maxListeners,
-      //nsp: socket.nsp
+      nsp: socket.nsp,
       client: socket.client,
       //recovered: socket.recovered,
-      //data: socket.data,
+      data: socket.data,
       //socketConnected: socket.connected,
       //acks: socket.acks,
       //fns: socket.fns,
       //flags: socket.flags,
-      //server: socket.server,
-      //adapter: socket.adapter,
-      //id: socket.id,
-      //handshake: socket.handshake,
+      server: socket.server,
+      adapter: socket.adapter,
+      id: socket.id,
+      handshake: socket.handshake,
     });
   }
 
@@ -82,7 +82,7 @@ class _SocketIO {
       const session = socket.id;
       const query = socket.query;
       //socketInfo(socket);
-      connectedMessageSOCKET(client, session)
+      connectedMessageSOCKET(client, session);
       const room = "general";
       socket.join(room);
       socketRouter(socket, socketRoutes);
@@ -95,13 +95,8 @@ class _SocketIO {
     const socketRouter = this.socketRouter;
     const socketRoutes = this.socketRoutes;
     const socketConnection = this.socketConnection;
-    socketConnection(
-      this.socketIO,
-      socketInfo,
-      socketRouter,
-      socketRoutes
-    );
+    socketConnection(this.socketIO, socketInfo, socketRouter, socketRoutes);
   }
 }
 
-export default _SocketIO
+export default _SocketIO;
