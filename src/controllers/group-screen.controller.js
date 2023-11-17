@@ -18,7 +18,7 @@ export const createGroupScreen = async (req, res) => {
 
 export const findGroupScreen = async (req, res) => {
   const table = "groups_screen";
-  const columns = req.body.columns ? req.body.columns : "ID";
+  const columns = req.body.columns ? req.body.columns : "*";
   const criterion = req.body.criterion
     ? req.body.criterion
     : `WHERE ID = ${req.params.id}`;

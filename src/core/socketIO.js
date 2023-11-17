@@ -10,32 +10,32 @@ class _SocketIO {
   videoTopic(socket) {
     socket.on("video", (res) => {
       const data = res;
-      console.log(res);
-      socket.to("general").emit("video", res);
+      console.log({ res });
+      socket.to("general").emit("video", data);
     });
   }
 
   screenTopic(socket) {
     socket.on("screen", (res) => {
       const data = res;
-      console.log({res});
-      socket.to("general").emit("screen", res);
+      console.log({ res });
+      socket.to("general").emit("screen", data);
     });
   }
 
   groupTopic(socket) {
     socket.on("group", (res) => {
       const data = res;
-      console.log(res);
-      socket.to("general").emit("group", res);
+      console.log({ res });
+      socket.to("general").emit("group", data);
     });
   }
 
   contTopic(socket) {
     socket.on("cont", (res) => {
       const data = res;
-      console.log(res);
-      socket.to("general").emit("group", res);
+      console.log({ res });
+      socket.to("general").emit("group", data);
     });
   }
 
@@ -58,17 +58,17 @@ class _SocketIO {
       //_events: socket._events,
       //_eventsCount: socket._eventsCount,
       //_maxListeners: socket._maxListeners,
-      nsp: socket.nsp,
-      client: socket.client,
+      //nsp: socket.nsp,
+      //client: socket.client,
       //recovered: socket.recovered,
-      data: socket.data,
+      //data: socket.data,
       //socketConnected: socket.connected,
       //acks: socket.acks,
       //fns: socket.fns,
       //flags: socket.flags,
-      server: socket.server,
-      adapter: socket.adapter,
-      id: socket.id,
+      //server: socket.server,
+      //adapter: socket.adapter,
+      //id: socket.id,
       handshake: socket.handshake,
     });
   }
@@ -80,8 +80,8 @@ class _SocketIO {
       const handshake = socket.handshake;
       const server = socket.server;
       const session = socket.id;
-      const query = socket.query;
-      //socketInfo(socket);
+      const query = socket.handshake.query;
+      socketInfo(socket);
       connectedMessageSOCKET(client, session);
       const room = "general";
       socket.join(room);
