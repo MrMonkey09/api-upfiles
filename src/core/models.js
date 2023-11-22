@@ -29,7 +29,7 @@ const tableList = [
   {
     name: "screens_groups_list",
     columns:
-      "ID int NOT NULL AUTO_INCREMENT, ScreenID int NOT NULL, GroupScreenID int NOT NULL, PRIMARY KEY (ID), CONSTRAINT FK_ScreenGroupList FOREIGN KEY (ScreenID) REFERENCES screens(ID), CONSTRAINT FK_GroupScreenList FOREIGN KEY (GroupScreenID) REFERENCES groups_screen(ID)",
+      "ID int NOT NULL AUTO_INCREMENT, ScreenID int NOT NULL UNIQUE, GroupScreenID int NOT NULL, PRIMARY KEY (ID), CONSTRAINT FK_ScreenGroupList FOREIGN KEY (ScreenID) REFERENCES screens(ID), CONSTRAINT FK_GroupScreenList FOREIGN KEY (GroupScreenID) REFERENCES groups_screen(ID)",
   },
 ];
 
